@@ -1,9 +1,11 @@
 package com.nekomimi.demo
 
 import android.app.Application
+import com.nekomim.core.BaseApplication
+import dagger.hilt.android.HiltAndroidApp
 
-
-class App : Application() {
+@HiltAndroidApp
+class App : BaseApplication() {
 
 
 }

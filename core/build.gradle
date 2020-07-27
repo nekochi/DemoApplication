@@ -1,22 +1,20 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
-
 
 android {
     compileSdkVersion buildConfig.compileSdkVersion
     buildToolsVersion buildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.nekomimi.demo"
         minSdkVersion buildConfig.minSdkVersion
         targetSdkVersion buildConfig.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     compileOptions {
@@ -33,18 +31,19 @@ android {
 }
 
 dependencies {
-    implementation project(':core')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation deps.kotlin.stdlib
     implementation deps.core.ktx
     implementation deps.androidx.appcompat
-    testImplementation deps.test.junit
-    androidTestImplementation deps.androidTest.junit
-    androidTestImplementation deps.androidTest.espresso
 
-    //Hilt
-    implementation deps.hilt.hilt
-    kapt deps.hilt.compiler
+    //Room
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+    implementation deps.room.ktx
+    implementation deps.room.rxjava2
+    implementation deps.room.guava
+    testImplementation deps.room.testing
+
 
     //JetPack
     implementation deps.lifecycle.viewmodel
@@ -52,4 +51,11 @@ dependencies {
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.savedstate
     implementation deps.lifecycle.compiler
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.androidTest.junit
+    androidTestImplementation deps.androidTest.espresso
+
+
+
 }
