@@ -52,6 +52,17 @@ dependencies {
     implementation deps.lifecycle.savedstate
     implementation deps.lifecycle.compiler
 
+    //retrofit
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.gson
+//    implementation deps.retrofit.protobuf
+    implementation deps.retrofit.rxjava3
+
+    //RxJava
+    implementation deps.rxjava.rxjava
+    implementation deps.rxjava.rxandroid
+
+
     testImplementation deps.test.junit
     androidTestImplementation deps.androidTest.junit
     androidTestImplementation deps.androidTest.espresso

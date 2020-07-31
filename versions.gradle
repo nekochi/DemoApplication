@@ -15,6 +15,8 @@ versions.dagger = '2.28.3'
 versions.hilt = '2.28-alpha'
 versions.lifecycle = '2.2.0'
 versions.arch = '2.1.0'
+versions.retrofit = '2.9.0'
+versions.rxjava = '3.0.0'
 
 def deps = [:]
 
@@ -54,6 +56,16 @@ def hilt = [:]
 hilt.hilt = "com.google.dagger:hilt-android:${versions.hilt}"
 hilt.compiler = "com.google.dagger:hilt-android-compiler:${versions.hilt}"
 
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
+retrofit.protobuf = "com.squareup.retrofit2:converter-protobuf:${versions.retrofit}"
+retrofit.rxjava3 = "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit}"
+
+def rxjava = [:]
+rxjava.rxjava = "io.reactivex.rxjava3:rxjava:${versions.rxjava}"
+rxjava.rxandroid = "io.reactivex.rxjava3:rxandroid:${versions.rxjava}"
+
 def test = [:]
 test.junit = 'junit:junit:4.13'
 
@@ -70,6 +82,8 @@ deps.test = test
 deps.androidTest = androidTest
 deps.dagger = dagger
 deps.hilt = hilt
+deps.retrofit = retrofit
+deps.rxjava = rxjava
 
 ext.buildConfig = buildConfig
 ext.deps = deps
@@ -84,5 +98,7 @@ static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    handler.maven { url "https://oss.jfrog.org/libs-snapshot" }
+
 }
 ext.addRepos = this.&addRepos
